@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ajo Lindo — Menú</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #111010;
+    --charcoal: #1c1c1a;
+    --olive: #5a6b3a;
+    --moss: #3d4f26;
+    --sage: #8a9e6b;
+    --sage-light: #b5c99a;
+    --beige: #f2ead8;
+    --cream: #faf6ee;
+    --warm-white: #fff8ef;
+    --wood: #8b6340;
+    --wood-light: #c49a6c;
+    --gold: #c9a84c;
+    --gold-light: #e2c97e;
+    --text-dark: #1e1c17;
+    --text-mid: #4a4637;
+    --text-light: #7a7260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--text-dark);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ───── NOISE TEXTURE OVERLAY ───── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  /* ───── HERO ───── */
+  .hero {
+    position: relative;
+    background: var(--black);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 60px 24px;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 40%, #2a3a1a 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 80% 80%, #3d3010 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 20% 70%, #1a2a0a 0%, transparent 60%),
+      var(--black);
+  }
+
+  /* Decorative vines / organic shapes */
+  .vine {
+    position: absolute;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+  .vine-tl {
+    top: -20px; left: -20px;
+    width: 320px;
+  }
+  .vine-br {
+    bottom: -20px; right: -20px;
+    width: 260px;
+    transform: rotate(180deg);
+  }
+
+  .hero-badge {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 100px;
+    padding: 6px 18px;
+    color: var(--gold-light);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 28px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-badge::before {
+    content: '✦';
+    font-size: 9px;
+  }
+  .hero-badge::after {
+    content: '✦';
+    font-size: 9px;
+  }
+
+  .hero-title {
+    position: relative;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 14vw, 160px);
+    color: var(--cream);
+    letter-spacing: 6px;
+    line-height: 0.9;
+    text-align: center;
+    animation: fadeUp 0.9s 0.1s ease both;
+  }
+
+  .hero-title span {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(28px, 5vw, 56px);
+    color: var(--gold);
+    letter-spacing: 8px;
+    margin-top: 8px;
+    font-weight: 400;
+  }
+
+  .hero-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 32px 0;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+  .hero-divider::before,
+  .hero-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,168,76,0.5), transparent);
+    width: 80px;
+  }
+  .hero-divider-icon {
+    color: var(--gold);
+    font-size: 18px;
+    opacity: 0.8;
+  }
+
+  .hero-tagline {
+    position: relative;
+    font-size: 13px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(242,234,216,0.55);
+    font-weight: 300;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(242,234,216,0.35);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: fadeIn 1.5s 1s ease both;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(201,168,76,0.6), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+
+  /* ───── MAIN CONTENT ───── */
+  .menu-wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 24px 120px;
+  }
+
+  /* ───── SECTION HEADER ───── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 40px;
+    margin-top: 72px;
+  }
+  .section-header:first-of-type {
+    margin-top: 0;
+  }
+
+  .section-number {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--gold);
+    opacity: 0.7;
+    min-width: 24px;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 5vw, 52px);
+    color: var(--charcoal);
+    letter-spacing: 3px;
+    line-height: 1;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--olive), transparent);
+    opacity: 0.4;
+  }
+
+  .section-icon {
+    font-size: 22px;
+    opacity: 0.6;
+  }
+
+  /* ───── ITEM CARDS ───── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 18px;
+  }
+
+  .card {
+    background: var(--warm-white);
+    border: 1px solid rgba(90,107,58,0.12);
+    border-radius: 16px;
+    padding: 24px 26px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--olive), var(--gold), var(--olive));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.10);
+  }
+
+  .card:hover::before {
+    opacity: 1;
+  }
+
+  .card-corner {
+    position: absolute;
+    top: 16px; right: 16px;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(90,107,58,0.08);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+
+  .card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+    line-height: 1.2;
+    padding-right: 44px;
+  }
+
+  .card-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: var(--olive);
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+
+  .card-price::before {
+    content: '$';
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    color: var(--wood);
+    opacity: 0.7;
+  }
+
+  .card-divider {
+    height: 1px;
+    background: linear-gradient(to right, rgba(90,107,58,0.2), transparent);
+    margin-bottom: 14px;
+  }
+
+  .card-ingredients-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .card-ingredients {
+    font-size: 12px;
+    color: var(--text-light);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* ───── PICADAS — wide variant ───── */
+  .cards-grid-wide {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 18px;
+  }
+
+  .card-size-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--olive);
+    color: #fff;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 100px;
+    padding: 3px 12px;
+    margin-bottom: 10px;
+  }
+
+  .picada-group {
+    background: var(--warm-white);
+    border: 1px solid rgba(90,107,58,0.12);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .picada-group:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.10);
+  }
+
+  .picada-header {
+    background: linear-gradient(135deg, var(--charcoal), #2a2a28);
+    padding: 20px 24px 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .picada-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--olive), var(--gold));
+  }
+
+  .picada-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+
+  .picada-ingredients-header {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(201,168,76,0.7);
+    margin-bottom: 4px;
+  }
+
+  .picada-ingredients-text {
+    font-size: 11.5px;
+    color: rgba(242,234,216,0.6);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  .picada-sizes {
+    display: flex;
+    border-top: 1px solid rgba(90,107,58,0.1);
+  }
+
+  .picada-size {
+    flex: 1;
+    padding: 14px 12px;
+    text-align: center;
+    border-right: 1px solid rgba(90,107,58,0.1);
+  }
+  .picada-size:last-child { border-right: none; }
+
+  .picada-size-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 4px;
+  }
+
+  .picada-size-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--olive);
+    letter-spacing: 1px;
+  }
+
+  .picada-size-price::before {
+    content: '$';
+    font-size: 11px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--wood);
+    opacity: 0.7;
+  }
+
+  /* ───── FOOTER ───── */
+  .menu-footer {
+    background: var(--charcoal);
+    padding: 60px 24px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .menu-footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--olive), var(--gold), var(--olive));
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--cream);
+    letter-spacing: 6px;
+    margin-bottom: 4px;
+  }
+
+  .footer-logo span {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--gold);
+    display: block;
+    letter-spacing: 4px;
+  }
+
+  .footer-divider {
+    width: 60px;
+    height: 1px;
+    background: rgba(201,168,76,0.4);
+    margin: 20px auto;
+  }
+
+  .footer-note {
+    font-size: 11px;
+    color: rgba(242,234,216,0.35);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  /* ───── FEATURED STRIPE ───── */
+  .featured-stripe {
+    background: var(--charcoal);
+    padding: 24px;
+    border-radius: 16px;
+    margin-bottom: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    border: 1px solid rgba(201,168,76,0.18);
+  }
+
+  .featured-stripe-text {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(201,168,76,0.7);
+    margin-bottom: 4px;
+  }
+
+  .featured-stripe-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--cream);
+    font-style: italic;
+  }
+
+  .featured-stripe-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    color: var(--gold);
+    letter-spacing: 2px;
+  }
+
+  .featured-stripe-price::before {
+    content: '$';
+    font-size: 20px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--gold-light);
+    opacity: 0.7;
+  }
+
+  /* ───── ANIMATIONS ───── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50%       { opacity: 1;   transform: scaleY(1.1); }
+  }
+
+  /* ───── RESPONSIVE ───── */
+  @media (max-width: 600px) {
+    .cards-grid, .cards-grid-wide {
+      grid-template-columns: 1fr;
+    }
+    .picada-sizes {
+      flex-direction: column;
+    }
+    .picada-size {
+      border-right: none;
+      border-bottom: 1px solid rgba(90,107,58,0.1);
+    }
+    .picada-size:last-child { border-bottom: none; }
+    .featured-stripe {
+      flex-direction: column;
+      text-align: center;
+    }
+    .section-header {
+      gap: 12px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <!-- Decorative vine SVG top-left -->
+  <svg class="vine vine-tl" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20 0 C20 80 80 80 80 160 C80 240 20 240 20 320 C20 380 60 400 60 400" stroke="#8a9e6b" stroke-width="2" fill="none"/>
+    <circle cx="80" cy="80" r="18" fill="#5a6b3a" opacity="0.5"/>
+    <circle cx="20" cy="200" r="12" fill="#3d4f26" opacity="0.4"/>
+    <path d="M80 80 C120 60 140 100 120 120" stroke="#8a9e6b" stroke-width="1.5" fill="none"/>
+    <path d="M20 200 C-20 180 -10 220 10 230" stroke="#8a9e6b" stroke-width="1.5" fill="none"/>
+    <circle cx="130" cy="105" r="8" fill="#5a6b3a" opacity="0.4"/>
+    <circle cx="8" cy="233" r="6" fill="#5a6b3a" opacity="0.4"/>
+    <path d="M60 320 C100 310 110 340 90 360" stroke="#8a9e6b" stroke-width="1.5" fill="none"/>
+    <circle cx="88" cy="362" r="7" fill="#3d4f26" opacity="0.4"/>
+  </svg>
+
+  <!-- Decorative vine SVG bottom-right -->
+  <svg class="vine vine-br" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20 0 C20 80 80 80 80 160 C80 240 20 240 20 320 C20 380 60 400 60 400" stroke="#8a9e6b" stroke-width="2" fill="none"/>
+    <circle cx="80" cy="80" r="18" fill="#5a6b3a" opacity="0.5"/>
+    <circle cx="20" cy="200" r="12" fill="#3d4f26" opacity="0.4"/>
+    <path d="M80 80 C120 60 140 100 120 120" stroke="#8a9e6b" stroke-width="1.5" fill="none"/>
+    <circle cx="130" cy="105" r="8" fill="#5a6b3a" opacity="0.4"/>
+  </svg>
+
+  <div class="hero-badge">Menú de experiencias</div>
+
+  <h1 class="hero-title">
+    AJO LINDO
+    <span>Street Food &amp; Sabor</span>
+  </h1>
+
+  <div class="hero-divider">
+    <div class="hero-divider-icon">🌿</div>
+  </div>
+
+  <p class="hero-tagline">Cocina artesanal · Ingredientes frescos · Ambiente natural</p>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Ver Menú</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ MENU ═══════════════════ -->
+<div class="menu-wrapper">
+
+  <!-- ── 01 HAMBURGUESAS ── -->
+  <div class="section-header">
+    <span class="section-number">01</span>
+    <h2 class="section-title">Hamburguesas</h2>
+    <div class="section-line"></div>
+    <span class="section-icon">🍔</span>
+  </div>
+
+  <div class="cards-grid">
+
+    <div class="card">
+      <div class="card-corner">🍔</div>
+      <div class="card-name">Hamburguesa Sencilla</div>
+      <div class="card-price">17.000</div>
+      <div class="card-divider"></div>
+      <div class="card-ingredients-label">Ingredientes</div>
+      <div class="card-ingredients">Pan de hamburguesa, carne 120g, papa ripio, cebolla, tomate, lechuga, queso, jamón, papas a la francesa · Salsas: tártara, mostaza, piña, roja</div>
+    </div>
+
+    <div class="card">
+      <div class="card-corner">🥩</div>
+      <div class="card-name">Hamburguesa Doble Carne</div>
+      <div class="card-price">25.000</div>
+      <div class="card-divider"></div>
+      <div class="card-ingredients-label">Ingredientes</div>
+      <div class="card-ingredients">Pan brioche, doble carne, jamón, tocineta, queso cheddar, papa ripio, lechuga, tomate, cebolla, papas a la francesa · Salsas: big mac, tártara</div>
+    </div>
+
+    <div class="card">
+      <div class="card-corner">🔥</div>
+      <div class="card-name">Hamburguesa Bondiola BBQ</div>
+      <div class="card-price">26.000</div>
+      <div class="card-divider"></div>
+      <div class="card-ingredients-label">Ingredientes</div>
+      <div class="card-ingredients">Pan brioche, carne, bondiola, salsa BBQ, huevo de codorniz, tocineta, queso cheddar, cebolla apanada, tomate, lechuga, papas a la francesa · Salsas: big mac, tártara</div>
+    </div>
+
+    <div class="card">
+      <div class="card-corner">🌶️</div>
+      <div class="card-name">Hamburguesa Birria</div>
+      <div class="card-price">28.000</div>
+      <div class="card-divider"></div>
+      <div class="card-ingredients-label">Ingredientes</div>
+      <div class="card-ingredients">Pan, carne, tocineta, queso doble crema, salsa de queso cheddar, jalapeños, birria, guiso de birria, cilantro, cebolla picada, papas a la francesa · Salsas: tártara, big mac</div>
+    </div>
+
+  </div>
+
+
+  <!-- ── 02 CHORIPERROS & PERROS ── -->
+  <div class="section-header">
+    <span class="section-number">02</span>
+    <h2 class="section-title">Choriperros &amp; Perros</h2>
+    <div class="section-line"></div>
+    <span class="section-icon">🌭</span>
+  </div>
+
+  <div class="cards-grid">
+
+    <div class="card">
+      <div class="card-corner">🌭</div>
+      <div class="card-name">Choriperro Artesanal</div>
+      <div class="card-price">25.000</div>
+      <div class="card-divider"></div>
+      <div class="card-ingredients-label">Ingredientes</div>
+      <div class="card-ingredients">Pan brioche, chorizo artesanal, chicharrón, tocineta, carne mechada, jalapeños, salsa de queso, cebolla caramelizada, papas a la francesa · Salsa tártara</div>
+    </div>
+
+    <div class="card">
+      <div class="card-corner">🇺🇸</div>
+      <div class="card-name">Perro Americano</div>
+      <div class="card-price">18.000</div>
+      <div class="card-divider"></div>
+      <div class="card-ingredients-label">Ingredientes</div>
+      <div class="card-ingredients">Pan brioche, salchicha americana, pollo, jamón de pierna, queso, maíz, huevo de codorniz, papas a la francesa · Salsas: tártara, mostaza, BBQ, piña</div>
+    </div>
+
+    <div class="card">
+      <div class="card-corner">⭐</div>
+      <div class="card-name">Perro Sencillo</div>
+      <div class="card-price">10.000</div>
+      <div class="card-divider"></div>
+      <div class="card-ingredients-label">Ingredientes</div>
+      <div class="card-ingredients">Pan tradicional, salchicha, papa ripio, cebolla, queso rallado, jamón, huevo de codorniz · Salsas: tártara, mostaza, BBQ, piña</div>
+    </div>
+
+  </div>
+
+
+  <!-- ── 03 PICADAS ── -->
+  <div class="section-header">
+    <span class="section-number">03</span>
+    <h2 class="section-title">Picadas</h2>
+    <div class="section-line"></div>
+    <span class="section-icon">🍖</span>
+  </div>
+
+  <div class="cards-grid-wide">
+
+    <!-- La Criolla -->
+    <div class="picada-group">
+      <div class="picada-header">
+        <div class="picada-name">La Criolla</div>
+        <div class="picada-ingredients-header">Ingredientes</div>
+        <div class="picada-ingredients-text">Maduro con queso, yuca cocida, lomo, chicharrón, papas cascos, chorizo artesanal, pechuga, mazorca, queso costeño, suero costeño</div>
+      </div>
+      <div class="picada-sizes">
+        <div class="picada-size">
+          <div class="picada-size-label">Para 1</div>
+          <div class="picada-size-price">24.000</div>
+        </div>
+        <div class="picada-size">
+          <div class="picada-size-label">Para 2</div>
+          <div class="picada-size-price">36.000</div>
+        </div>
+        <div class="picada-size">
+          <div class="picada-size-label">Para 4</div>
+          <div class="picada-size-price">70.000</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- La Ranchera -->
+    <div class="picada-group">
+      <div class="picada-header">
+        <div class="picada-name">La Ranchera</div>
+        <div class="picada-ingredients-header">Ingredientes</div>
+        <div class="picada-ingredients-text">Papas a la francesa, papas casco, arepitas, alitas, lomo, pechuga, chorizo, costillas</div>
+      </div>
+      <div class="picada-sizes">
+        <div class="picada-size">
+          <div class="picada-size-label">Para 1</div>
+          <div class="picada-size-price">26.000</div>
+        </div>
+        <div class="picada-size">
+          <div class="picada-size-label">Para 2</div>
+          <div class="picada-size-price">38.000</div>
+        </div>
+        <div class="picada-size">
+          <div class="picada-size-label">Para 4</div>
+          <div class="picada-size-price">70.000</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- La Desordenada -->
+    <div class="picada-group">
+      <div class="picada-header">
+        <div class="picada-name">La Desordenada</div>
+        <div class="picada-ingredients-header">Ingredientes</div>
+        <div class="picada-ingredients-text">Papas a la francesa, batavia, salchicha, chorizo, pollo, lomo, cebolla, tomate, queso rallado, tocineta, papa ripio, huevo de codorniz · Salsas: tártara, piña, BBQ, mostaza</div>
+      </div>
+      <div class="picada-sizes">
+        <div class="picada-size">
+          <div class="picada-size-label">Para 1</div>
+          <div class="picada-size-price">23.000</div>
+        </div>
+        <div class="picada-size">
+          <div class="picada-size-label">Para 2</div>
+          <div class="picada-size-price">35.000</div>
+        </div>
+        <div class="picada-size">
+          <div class="picada-size-label">Para 4</div>
+          <div class="picada-size-price">60.000</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ── 04 SALCHIPAPAS ── -->
+  <div class="section-header">
+    <span class="section-number">04</span>
+    <h2 class="section-title">Salchipapas</h2>
+    <div class="section-line"></div>
+    <span class="section-icon">🍟</span>
+  </div>
+
+  <div class="cards-grid">
+
+    <div class="card">
+      <div class="card-corner">🍟</div>
+      <div class="card-name">Salchipapa Tradicional</div>
+      <div class="card-price">15.000</div>
+      <div class="card-divider"></div>
+      <div class="card-ingredients-label">Ingredientes</div>
+      <div class="card-ingredients">Salchicha, papas a la francesa, papa ripio, lechuga batavia, tomate, cebolla, queso rallado · Salsas: tártara, maíz, piña, mostaza, BBQ</div>
+    </div>
+
+    <div class="card">
+      <div class="card-corner">🌿</div>
+      <div class="card-name">Choripapa</div>
+      <div class="card-price">17.000</div>
+      <div class="card-divider"></div>
+      <div class="card-ingredients-label">Ingredientes</div>
+      <div class="card-ingredients">Chorizo, papas a la francesa, papa ripio, lechuga batavia, tomate, cebolla, queso rallado · Salsas: tártara, maíz, piña, BBQ, mostaza</div>
+    </div>
+
+    <div class="card">
+      <div class="card-corner">🍗</div>
+      <div class="card-name">Choripollo</div>
+      <div class="card-price">19.000</div>
+      <div class="card-divider"></div>
+      <div class="card-ingredients-label">Ingredientes</div>
+      <div class="card-ingredients">Papas a la francesa, chorizo, lechuga batavia, tomate, cebolla, pollo, queso costeño, papa ripio · Salsas: tártara, maíz, piña, mostaza, BBQ</div>
+    </div>
+
+    <div class="card">
+      <div class="card-corner">🥚</div>
+      <div class="card-name">Salchipollo</div>
+      <div class="card-price">18.000</div>
+      <div class="card-divider"></div>
+      <div class="card-ingredients-label">Ingredientes</div>
+      <div class="card-ingredients">Papas a la francesa, pollo, salchicha, lechuga batavia, tomate, cebolla caramelizada, queso, papa ripio, maíz, huevo de codorniz · Salsas: tártara, maíz, piña, mostaza, BBQ</div>
+    </div>
+
+    <div class="card">
+      <div class="card-corner">🥑</div>
+      <div class="card-name">Salchipapa Mixta</div>
+      <div class="card-price">18.000</div>
+      <div class="card-divider"></div>
+      <div class="card-ingredients-label">Ingredientes</div>
+      <div class="card-ingredients">Lechuga batavia, tomate, cebolla, pollo desmechado, carne desmechada, papas a la francesa, salchicha, queso gratinado, papa ripio, guacamole · Salsas: tártara, maíz, piña, BBQ, mostaza</div>
+    </div>
+
+  </div>
+
+
+  <!-- ── 05 ALITAS ── -->
+  <div class="section-header">
+    <span class="section-number">05</span>
+    <h2 class="section-title">Alitas</h2>
+    <div class="section-line"></div>
+    <span class="section-icon">🍗</span>
+  </div>
+
+  <div class="cards-grid">
+
+    <div class="card">
+      <div class="card-corner">🔥</div>
+      <div class="card-name">Alitas BBQ</div>
+      <div class="card-price">21.000</div>
+      <div class="card-divider"></div>
+      <div class="card-ingredients-label">Ingredientes</div>
+      <div class="card-ingredients">Alitas, salsa BBQ, papas a la francesa</div>
+    </div>
+
+    <div class="card">
+      <div class="card-corner">🍯</div>
+      <div class="card-name">Alitas Miel Mostaza</div>
+      <div class="card-price">21.000</div>
+      <div class="card-divider"></div>
+      <div class="card-ingredients-label">Ingredientes</div>
+      <div class="card-ingredients">Alitas, salsa miel mostaza, papas a la francesa</div>
+    </div>
+
+    <div class="card">
+      <div class="card-corner">🍊</div>
+      <div class="card-name">Alitas Naranja &amp; Ajonjolí</div>
+      <div class="card-price">23.000</div>
+      <div class="card-divider"></div>
+      <div class="card-ingredients-label">Ingredientes</div>
+      <div class="card-ingredients">Alitas, salsa de naranja, ajonjolí, papas casco</div>
+    </div>
+
+  </div>
+
+
+  <!-- ── 06 MEXICANOS ── -->
+  <div class="section-header">
+    <span class="section-number">06</span>
+    <h2 class="section-title">Mexicanos</h2>
+    <div class="section-line"></div>
+    <span class="section-icon">🌮</span>
+  </div>
+
+  <div class="cards-grid">
+
+    <div class="card">
+      <div class="card-corner">🌯</div>
+      <div class="card-name">Burrito de la Casa</div>
+      <div class="card-price">22.000</div>
+      <div class="card-divider"></div>
+      <div class="card-ingredients-label">Ingredientes</div>
+      <div class="card-ingredients">Tortilla, carne, aguacate, salsa cheddar, tártara, lechuga batavia, mix de verduras, queso doble crema, consomé, crema de leche, salsa roja</div>
+    </div>
+
+    <div class="card">
+      <div class="card-corner">🧀</div>
+      <div class="card-name">Nachos</div>
+      <div class="card-price">22.000</div>
+      <div class="card-divider"></div>
+      <div class="card-ingredients-label">Ingredientes</div>
+      <div class="card-ingredients">Nachos, guacamole, pico de gallo, pechuga en cuadritos, queso cheddar, lomo en cuadritos, chorizo picado, tártara, queso doble crema</div>
+    </div>
+
+    <div class="card">
+      <div class="card-corner">🌮</div>
+      <div class="card-name">Tacos de Birria</div>
+      <div class="card-price">24.000</div>
+      <div class="card-divider"></div>
+      <div class="card-ingredients-label">Ingredientes</div>
+      <div class="card-ingredients">Tortilla cubierta en consomé, birria, queso cheddar, tártara, consomé, cilantro, cebolla blanca picada</div>
+    </div>
+
+  </div>
+
+
+  <!-- ── 07 BEBIDAS ── -->
+  <div class="section-header">
+    <span class="section-number">07</span>
+    <h2 class="section-title">Bebidas</h2>
+    <div class="section-line"></div>
+    <span class="section-icon">🥤</span>
+  </div>
+
+  <div class="cards-grid">
+
+    <div class="card">
+      <div class="card-corner">🟢</div>
+      <div class="card-name">Soda de Frutos Verdes</div>
+      <div class="card-price">10.000</div>
+      <div class="card-divider"></div>
+      <div class="card-ingredients-label">Descripción</div>
+      <div class="card-ingredients">Refrescante soda artesanal con mezcla de frutos verdes de temporada</div>
+    </div>
+
+    <div class="card">
+      <div class="card-corner">🔴</div>
+      <div class="card-name">Soda de Frutos Rojos</div>
+      <div class="card-price">10.000</div>
+      <div class="card-divider"></div>
+      <div class="card-ingredients-label">Descripción</div>
+      <div class="card-ingredients">Refrescante soda artesanal con mezcla de frutos rojos de temporada</div>
+    </div>
+
+    <div class="card">
+      <div class="card-corner">🟡</div>
+      <div class="card-name">Soda de Frutos Amarillos</div>
+      <div class="card-price">10.000</div>
+      <div class="card-divider"></div>
+      <div class="card-ingredients-label">Descripción</div>
+      <div class="card-ingredients">Refrescante soda artesanal con mezcla de frutos amarillos de temporada</div>
+    </div>
+
+  </div>
+
+
+  <!-- ── 08 OTROS ── -->
+  <div class="section-header">
+    <span class="section-number">08</span>
+    <h2 class="section-title">Otros</h2>
+    <div class="section-line"></div>
+    <span class="section-icon">✨</span>
+  </div>
+
+  <div class="cards-grid">
+
+    <div class="card">
+      <div class="card-corner">🥪</div>
+      <div class="card-name">Sandwich Sencillo</div>
+      <div class="card-price">5.000</div>
+      <div class="card-divider"></div>
+      <div class="card-ingredients-label">Ingredientes</div>
+      <div class="card-ingredients">Pan de sandwich, papa ripio, lechuga, queso, jamón de pierna, tomate, cebolla · Salsas: tártara, mostaza, rosada</div>
+    </div>
+
+    <div class="card">
+      <div class="card-corner">🍗</div>
+      <div class="card-name">Sandwich de Pollo</div>
+      <div class="card-price">12.000</div>
+      <div class="card-divider"></div>
+      <div class="card-ingredients-label">Ingredientes</div>
+      <div class="card-ingredients">Pan de orégano, pollo, jamón de pierna, queso, lechuga, cebolla, tomate, papa ripio · Salsas: tártara, mostaza, rosada</div>
+    </div>
+
+    <div class="card">
+      <div class="card-corner">🌽</div>
+      <div class="card-name">Nachos Típicos</div>
+      <div class="card-price">25.000</div>
+      <div class="card-divider"></div>
+      <div class="card-ingredients-label">Ingredientes</div>
+      <div class="card-ingredients">Nachos, guacamole, pico de gallo, pechuga en cuadritos, queso cheddar, lomo en cuadritos, chorizo picado, tártara, queso doble crema</div>
+    </div>
+
+    <div class="card">
+      <div class="card-corner">🌾</div>
+      <div class="card-name">Desgranado Bollo Limpio</div>
+      <div class="card-price">20.000</div>
+      <div class="card-divider"></div>
+      <div class="card-ingredients-label">Ingredientes</div>
+      <div class="card-ingredients">Bollo, butifarra, cerdo, pechuga, queso costeño, lechuga batavia, papa ripio, crema de leche · Salsas: suero, tártara, piña</div>
+    </div>
+
+    <div class="card">
+      <div class="card-corner">🌽</div>
+      <div class="card-name">Desgranado Típico</div>
+      <div class="card-price">25.000</div>
+      <div class="card-divider"></div>
+      <div class="card-ingredients-label">Ingredientes</div>
+      <div class="card-ingredients">Maíz, pechuga, lomo, queso doble crema, salchicha mixta, papa ripio, crema de leche, sal, pimienta, mantequilla · Salsas: tártara, mostaza</div>
+    </div>
+
+  </div>
+
+</div><!-- /menu-wrapper -->
+
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="menu-footer">
+  <div class="footer-logo">
+    Ajo Lindo
+    <span>Street Food &amp; Sabor</span>
+  </div>
+  <div class="footer-divider"></div>
+  <p class="footer-note">Cocina artesanal · Ingredientes frescos · Ambiente natural</p>
+</footer>
+
+</body>
+</html>
